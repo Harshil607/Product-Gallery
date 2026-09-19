@@ -5,7 +5,7 @@ import router from "./routes/product.route.js";
 
 dotenv.config();
 
-const PORT = proccess.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 
@@ -15,5 +15,5 @@ app.use("/api/products", router);
 
 app.listen(PORT, () => {
   connectDB();
-  console.log("Server listening on port 5000...");
+  console.log(`Server listening on port ${PORT}...`);
 });
