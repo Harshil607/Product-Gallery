@@ -1,3 +1,4 @@
+import { data } from "react-router-dom";
 import { create } from "zustand";
 
 export const useProductStore = create((set) => ({
@@ -17,5 +18,16 @@ export const useProductStore = create((set) => ({
     const data = await res.json();
     set((state) => ({ products: [...state.products, data.data] }));
     return { success: true, message: "Product created successfully" };
+  },
+  getProducts: async () => {
+    const res = await fetch("/api/products");
+    if (!res.ok) {
+      return { success: false, message: "Failed to fetch products" };
+    }
+    const data = await res.json();
+    set({
+      products: data.data,
+    });
+    return { success: true, message: "Received Products" };
   },
 }));
